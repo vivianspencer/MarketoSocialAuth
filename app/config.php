@@ -15,17 +15,19 @@ return
 			),
 			"Google" => array(
 				"enabled" => getenv("GOOGLE_ENABLED"),
+				'redirect_uri' => getenv("SITE_URL") .'/?hauth.done=google',
 				"keys" => array("id" => getenv("GOOGLE_ID"), "secret" => getenv("GOOGLE_SECRET"))
 			),
 			"Facebook" => array(
 				"enabled" => getenv("FACEBOOK_ENABLED"),
 				"keys" => array("id" => getenv("FACEBOOK_ID"), "secret" => getenv("FACEBOOK_SECRET")),
+				'scope'   => 'email, user_about_me, user_birthday, user_hometown, user_website',
 				"trustForwarded" => false
 			),
 			"Twitter" => array(
 				"enabled" => getenv("TWITTER_ENABLED"),
 				"keys" => array("key" => getenv("TWITTER_KEY"), "secret" => getenv("TWITTER_SECRET")),
-				"includeEmail" => false
+				"includeEmail" => true
 			),
 			"Live" => array(
 				"enabled" => getenv("LIVE_ENABLED"),
