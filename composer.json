@@ -3,10 +3,12 @@
   "type": "project",
   "license": "proprietary",
   "description": "A replacement for Marketo's social sign in form option",
+  "prefer-stable": true,
   "require": {
     "hybridauth/hybridauth": "^2.5",
     "slim/slim": "^2.6",
-    "vlucas/phpdotenv": "^2.0"
+    "vlucas/phpdotenv": "^2.0",
+    "davidgorges/human-name-parser": "^0.2.1"
   },
   "authors": [
     {

@@ -1,8 +1,9 @@
 <?php
 require_once '../vendor/autoload.php';
 
+use HumanNameParser\Parser;
+
 $root_dir = dirname(__DIR__);
-$webroot_dir = $root_dir . '/app';
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
@@ -49,6 +50,13 @@ $app->container->singleton('hybridInstance', function () use ($config) {
 	return $instance;
 });
 
+// Return an instance of NameParser
+$app->container->singleton('parserInstance', function () {
+	$instance = new Parser();
+
+	return $instance;
+});
+
 $app->get( '/', function () use ( $app ) {
 	if (isset($_REQUEST['hauth_start']) || isset($_REQUEST['hauth_done'])) {
 		Hybrid_Endpoint::process();
@@ -65,9 +73,18 @@ $app->get('/authenticate/:network', function ($network) use ($app) {
 			return false;
 		}
 		else {
+			$output = $user_profile;
+
+			// Split the name into first/last name if the network only supports full name
+			if ($network == 'twitter') {
+				$name = $app->parserInstance->parse( $user_profile->firstName );
+
+				$output->firstName = $name->getFirstName();
+				$output->lastName = $name->getLastName();
+			}
+
 			echo "<pre>";
-			print_r( $adapter->getTokens() );
-			print_r( $user_profile );
+			print_r( $output );
 			echo "</pre>";
 		}
 
