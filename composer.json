@@ -1,8 +1,8 @@
 {
-  "name": "vivianspencer/MarketoSocialAuth",
+  "name": "vivianspencer/SocialAuth",
   "type": "project",
   "license": "proprietary",
-  "description": "A replacement for Marketo's social sign in form option",
+  "description": "A simple social sign in app",
   "prefer-stable": true,
   "require": {
     "hybridauth/hybridauth": "^2.5",

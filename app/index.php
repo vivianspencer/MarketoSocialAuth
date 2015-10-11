@@ -61,6 +61,7 @@ $app->get( '/', function () use ( $app ) {
 	if (isset($_REQUEST['hauth_start']) || isset($_REQUEST['hauth_done'])) {
 		Hybrid_Endpoint::process();
 	}
+
 });
 
 // Redirect to network for authentication
@@ -83,13 +84,11 @@ $app->get('/authenticate/:network', function ($network) use ($app) {
 				$output->lastName = $name->getLastName();
 			}
 
-			echo "<pre>";
-			print_r( $output );
-			echo "</pre>";
+			echo json_encode( $output );
 		}
 
 	} catch ( Exception $e ) {
-		echo $e->getMessage();
+		echo json_encode( array( 'error' => $e->getMessage() ) );
 	}
 });
 

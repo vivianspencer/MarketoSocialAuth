@@ -1,5 +1,5 @@
-# Marketo SocialAuth
-A replacement for Marketo's social sign in form option
+# SocialAuth
+A simple social sign in app
 
 
 ## License
